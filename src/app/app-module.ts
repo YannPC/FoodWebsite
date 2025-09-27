@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Header } from './header/header';
 import { Home } from './home/home';
+import { RatingModule } from 'ng-starrating';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { Home } from './home/home';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RatingModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

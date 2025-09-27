@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Food } from '../service/food/food';
+import { Component, inject} from '@angular/core';
+import { FoodService } from '../service/food/food.service';
+import { Food } from '../shared/models/food';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +10,12 @@ import { Food } from '../service/food/food';
 })
 export class Home {
 
-  foods:String[] = [];
-  constructor(private food:Food) {}
+  foods: Food[] = [];
+FoodService = inject(FoodService);
 
 // foods is my array and Food is the service
 ngOnInit(): void{
-  this.foods = this.food.getAll();
-  
+  this.foods = this.FoodService.getAll();
 }
 
 
