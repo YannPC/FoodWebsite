@@ -32,34 +32,6 @@ li a:hover {
   color: lightgray;
 }
 
-/* .product-item-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-} */
-/* .orgins {
-  flex: 9;
-}
-.origins span {
-  border-radius: 2rem;
-  background-color: whitesmoke;
-  display: inline-block;
-  font-size: 0.7rem;
-  color: gray;
-  margin-right: 0.3rem;
-}
-
-.cook-time{
-  font-size: .8rem;
-flex: 3;
-text-align: right;
-
-}
-
- .price{
-  color: #414141';
-  margin-top: .7rem;
-}  */
 .favorite {
   position: absolute;
   top: 5rem;
