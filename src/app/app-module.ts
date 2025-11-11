@@ -5,18 +5,25 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Header } from './header/header';
 import { Home } from './home/home';
-import { RatingModule } from 'ng-starrating';
+import { RatingComponent } from '../rating-component/rating-component';
+
+
+
+
 
 @NgModule({
   declarations: [
     App,
     Header,
-    Home
+    Home,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RatingModule
+    RatingComponent
+    
+
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
