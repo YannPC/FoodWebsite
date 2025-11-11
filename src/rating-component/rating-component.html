@@ -1,9 +1,11 @@
 <div class="star-rating">
-  <span *ngFor="let filled of getStars(); let i = index"
-        (click)="onClick(i)"
-        class="star"
-        [class.filled]="filled"
-        [attr.aria-label]="'Rate ' + (i+1) + ' stars'">
+  <span
+    *ngFor="let filled of getStars(); let i = index"
+    (click)="onClick(i)"
+    class="star"
+    [class.filled]="filled"
+    [attr.aria-label]="'Rate ' + (i + 1) + ' stars'"
+  >
     ★
   </span>
 </div>

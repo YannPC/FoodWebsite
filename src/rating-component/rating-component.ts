@@ -5,7 +5,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   selector: 'app-rating-component',
   imports: [NgFor],
   templateUrl: './rating-component.html',
-  styleUrl: './rating-component.css'
+  styleUrl: './rating-component.css',
+  standalone: true,
 })
 export class RatingComponent {
   @Input() value = 0;
@@ -20,6 +21,12 @@ export class RatingComponent {
   onClick(index: number) {
     if (this.readonly) return;
     this.value = index + 1;
+    this.rate.emit(this.value);
+  }
+
+  setRating(i: number) {
+    if (this.readonly) return;
+    this.value = i;
     this.rate.emit(this.value);
   }
 }

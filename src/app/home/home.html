@@ -3,9 +3,13 @@
     <a>
       <img src="{{ food.imageUrl }}" alt="" />
       <div class="content">
-        <div class="name">{{ food.name }}</div>
-        <span class="favorite {{ food.favorite ? '' : 'not' }}"> ❤ </span>
-        <app-rating-component> </app-rating-component>
+        <div class="name">
+          <span class="favorite {{ food.favorite ? '' : 'not' }}"> ❤ </span>
+          {{ food.name }}
+        </div>
+
+        <app-rating-component [value]="food.stars" (rate)="onRate(food, $event)">
+        </app-rating-component>
         <div class="product-item-footer">
           <div class="origins">
             <span *ngFor="let origin of food.origins">{{ origin }}</span>

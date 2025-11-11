@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FoodService } from '../service/food/food.service';
 import { Food } from '../shared/models/food';
+import { LOCALSTORAGE } from '../app-module';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +11,40 @@ import { Food } from '../shared/models/food';
 })
 export class Home {
   foods: Food[] = [];
-  FoodService = inject(FoodService);
+  foodService = inject(FoodService);
+  private storage = inject(LOCALSTORAGE);
 
   // foods is my array and Food is the service
   ngOnInit(): void {
-    this.foods = this.FoodService.getAll();
+    this.foods = this.foodService.getAll();
+
+    try {
+      const stored = this.storage.getItem('foodRatings');
+      const ratings: Record<string, number> = stored ? JSON.parse(stored) : {};
+
+      this.foods.forEach((f) => {
+        const key = (f as any).id ?? f.name;
+        if (ratings[key] != null) {
+          f.stars = ratings[key];
+        }
+      });
+    } catch (e) {
+      console.error('Error loading food ratings from localStorage', e);
+    }
+  }
+
+  onRate(food: Food, rating: number) {
+    food.stars = rating;
+
+    try {
+      const stored = this.storage.getItem('foodRatings'); // use this.storage
+      const ratings: Record<string, number> = stored ? JSON.parse(stored) : {};
+
+      const key = (food as any).id ?? food.name;
+      ratings[key] = rating;
+      this.storage.setItem('foodRatings', JSON.stringify(ratings)); // use this.storage
+    } catch (e) {
+      console.error('Error saving rating to storage', e);
+    }
   }
 }
