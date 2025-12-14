@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FoodService } from '../service/food/food.service';
 import { Food } from '../shared/models/food';
 import { LOCALSTORAGE } from '../app-module';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ export class Home {
   foods: Food[] = [];
   foodService = inject(FoodService);
   private storage = inject(LOCALSTORAGE);
+  private route = inject(ActivatedRoute);
 
   // foods is my array and Food is the service
   ngOnInit(): void {
@@ -31,6 +33,17 @@ export class Home {
     } catch (e) {
       console.error('Error loading food ratings from localStorage', e);
     }
+
+    this.route.params.subscribe((params) => {
+      const searchTerm = params['searchTerm'];
+      if (searchTerm) {
+        this.foods = this.foodService
+          .getAll()
+          .filter((food) => food.name.toLowerCase().includes(searchTerm.toLowerCase()));
+      } else {
+        this.foods = this.foodService.getAll();
+      }
+    });
   }
 
   onRate(food: Food, rating: number) {
