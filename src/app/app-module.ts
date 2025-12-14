@@ -12,12 +12,13 @@ import { Home } from './home/home';
 import { RatingComponent } from '../rating-component/rating-component';
 import { InjectionToken } from '@angular/core';
 import { Search } from '../search/search';
+import { FormsModule } from '@angular/forms';
 
 export const LOCALSTORAGE = new InjectionToken<Storage>('LOCALSTORAGE');
 
 @NgModule({
   declarations: [App, Header, Home],
-  imports: [BrowserModule, AppRoutingModule, RatingComponent, Search],
+  imports: [BrowserModule, AppRoutingModule, RatingComponent, Search, FormsModule],
   providers: [
     // { provide: 'LOCALSTORAGE', useValue: localStorage },
     {
