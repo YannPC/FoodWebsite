@@ -37,9 +37,9 @@ export class Home {
     this.route.params.subscribe((params) => {
       const searchTerm = params['searchTerm'];
       if (searchTerm) {
-        this.foods = this.foodService
-          .getAll()
-          .filter((food) => food.name.toLowerCase().includes(searchTerm.toLowerCase()));
+        this.foods = this.foodService.getAllFoodsBySearchTerm(params['searchTerm']);
+      } else if (params['tag']) {
+        this.foods = this.foodService.getAllFoodsByTag(params['tag']);
       } else {
         this.foods = this.foodService.getAll();
       }
